@@ -31,3 +31,6 @@
 ..\obj\motor.o: ..\STM32F10X_FWLIB\inc\stm32f10x_wwdg.h
 ..\obj\motor.o: ..\STM32F10X_FWLIB\inc\misc.h
 ..\obj\motor.o: ..\HARDWARE\TIM2\tim2.h
+..\obj\motor.o: ..\HARDWARE\Encode_TIM4\encoder.h
+..\obj\motor.o: ..\SYSTEM\delay\delay.h
+..\obj\motor.o: ..\SYSTEM\delay\delay.h

@@ -31,3 +31,8 @@
 ..\obj\tim3.o: ..\STM32F10X_FWLIB\inc\stm32f10x_wwdg.h
 ..\obj\tim3.o: ..\STM32F10X_FWLIB\inc\misc.h
 ..\obj\tim3.o: ..\HARDWARE\LED\led.h
+..\obj\tim3.o: ..\HARDWARE\Encode_TIM4\encoder.h
+..\obj\tim3.o: ..\SYSTEM\usart1\usart1.h
+..\obj\tim3.o: C:\Keil473\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\tim3.o: ..\HARDWARE\MOTOR\motor.h
+..\obj\tim3.o: ..\APP\PID\pid.h

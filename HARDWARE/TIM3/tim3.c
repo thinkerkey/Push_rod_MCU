@@ -5,6 +5,11 @@
 */
 #include "tim3.h"
 #include "led.h"
+#include "encoder.h"
+#include "usart1.h"
+#include "motor.h"
+#include "pid.h"
+
 
 /*----定时器3初始化函数-----*/
 void TIM3_Init(u16 arr,u16 psc)
@@ -37,9 +42,17 @@ void TIM3_Init(u16 arr,u16 psc)
 /*-----定时器3中断服务函数-----*/
 void TIM3_IRQHandler(void)
 {
-	
+	static int pulse_cnt = 0;
+    static float length = 0.0;
 	if(TIM_GetITStatus(TIM3,TIM_IT_Update) != RESET)
 	{
+        pulse_cnt = Read_Site();
+        length = LenAndPulseSwitch(pulse_cnt);
+//        printf("encoder:%d\r\n",pulse_cnt);
+//        printf("Len:%f\r\n",);
+        
+        //SetMotor(PIDController(&LengthCtrlPid,30.0,length));
+        printf("A30\r\nB%.2f\r\n",length);
 		LED0 = !LED0;
         LED1 = !LED1;
 		TIM_ClearITPendingBit(TIM3,TIM_IT_Update);

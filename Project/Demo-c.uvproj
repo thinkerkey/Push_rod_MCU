@@ -141,7 +141,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>7</TargetSelection>
+          <TargetSelection>13</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -155,7 +155,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>Segger\JL2CM3.dll</Driver>
+            <Driver>BIN\CMSIS_AGDI.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -167,7 +167,7 @@
             <Capability>1</Capability>
             <DriverSelection>4099</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>Segger\JL2CM3.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10X_FWLIB\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart1;..\HARDWARE\LED;..\HARDWARE\TIM3;..\APP\PID</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10X_FWLIB\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart1;..\HARDWARE\LED;..\HARDWARE\TIM3;..\APP\PID;..\HARDWARE\TIM2;..\HARDWARE\Encode_TIM4;..\HARDWARE\MOTOR</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -467,6 +467,21 @@
               <FileName>tim3.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\TIM3\tim3.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Encode_TIM4\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\TIM2\tim2.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\MOTOR\motor.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -609,9 +624,9 @@
           <GroupName>README</GroupName>
           <Files>
             <File>
-              <FileName>README.TXT</FileName>
+              <FileName>README.md</FileName>
               <FileType>5</FileType>
-              <FilePath>..\README.TXT</FilePath>
+              <FilePath>..\README.md</FilePath>
             </File>
           </Files>
         </Group>

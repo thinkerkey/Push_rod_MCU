@@ -29,9 +29,7 @@ typedef struct{
 }PIDTypedef;
 
 
-extern PIDTypedef AltitudeUpPid;
-extern PIDTypedef SinUpCtrlPid;
-extern PIDTypedef SinDownCtrlPid;
+extern PIDTypedef LengthCtrlPid;
 
 void PIDCalculate(PIDTypedef *pidset);
 float PIDController(PIDTypedef *pidset,float expvalue,float nowvalue);

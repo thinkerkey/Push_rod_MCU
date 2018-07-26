@@ -1,5 +1,7 @@
 #include "motor.h"
 #include "tim2.h"
+#include "encoder.h"
+#include "delay.h"
 
 
 void MotorIO_Init(void)
@@ -39,4 +41,31 @@ void SetMotor(int16_t moto)
     
     SetPwmValu(moto);
 }
+
+//长度mm到脉冲数的转换  64个脉冲对应 6mm 
+float LenAndPulseSwitch(int pulse)
+{
+    return  pulse * LenAndPulseSwitchPar;
+}
+
+void MotorSetZero(void)
+{
+    static uint8_t cnt = 0;
+    int pulse = 0;
+    SetMotor(-1900);
+    while(cnt < 3)
+    {
+        delay_ms(100);
+        pulse = Read_Encoder();
+        if((pulse < 5) && (pulse > -5))
+        {
+            cnt ++;
+        }
+        
+    }
+    SetMotor(0);
+    delay_ms(200);
+    TIM4->CNT = 0;
+}
+
 

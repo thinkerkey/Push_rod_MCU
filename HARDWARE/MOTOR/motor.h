@@ -16,8 +16,14 @@
 #define SetMotorForward {MotorIN1_OUT = 1;MotorIN2_OUT = 0;}
 #define SetMotorReverse {MotorIN1_OUT = 0;MotorIN2_OUT = 1;}
 
+#define LenAndPulseSwitchPar  0.09375f
+
 void MotorIO_Init(void);
 void SetMotor(int16_t moto);
+//长度mm到脉冲数的转换  64个脉冲对应 6mm 
+float LenAndPulseSwitch(int pulse);
+void MotorSetZero(void);
+
 
 #endif
 

@@ -50,7 +50,7 @@ float LenAndPulseSwitch(int pulse)
 
 void MotorSetZero(void)
 {
-    static uint8_t cnt = 0;
+    uint8_t cnt = 0;
     int pulse = 0;
     SetMotor(-1900);
     while(cnt < 3)

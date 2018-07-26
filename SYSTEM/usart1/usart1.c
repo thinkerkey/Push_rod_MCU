@@ -1,10 +1,11 @@
-﻿/*
+/*
 *文件名：串口1配置文件
 *功  能：源文件
 *作  者：程晓强
 */
 #include "sys.h"
 #include "usart1.h"
+#include "tim3.h"
 
 u8 USART1_RX_BUF[USART1_REC_LEN];     //接收缓冲数组
 u16 USART1_RX_STA=0;					//接收状态标记
@@ -82,28 +83,28 @@ void usart1_Init(u32 bound)
 *返回值：无
 *作  者：程晓强
 */
+uint8_t CmdReciveFromPc[2];
+uint8_t ReciveOkFlag = 0;
 void USART1_IRQHandler(void)
 {
+    static uint8_t cnt = 0;
 	u8 Res;
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)						//接收中断(接收到的数据必须是0x0d 0x0a结尾)
 	{
 		Res =USART_ReceiveData(USART1);											//读取接收到的数据
-		if((USART1_RX_STA&0x8000)==0)											//接收未完成
-		{
-			if(USART1_RX_STA&0x4000)											//接收到了0x0d
-			{
-				if(Res!=0x0a) USART1_RX_STA=0;									//接收错误,重新开始
-				else USART1_RX_STA|=0x8000;										//接收完成了 
-			}else{																//还没收到0X0D	
-				if(Res==0x0d){
-					USART1_RX_STA|=0x4000;
-				}else{
-					USART1_RX_BUF[USART1_RX_STA&0X3FFF] = Res ;
-					USART1_RX_STA++;
-					if(USART1_RX_STA>(USART1_REC_LEN-1)) USART1_RX_STA=0;		//接收数据错误,重新开始接收	  
-				}		 
-			}
-		}  
+		if(Res == 0XAA)
+        {
+            cnt = 0;
+            CmdReciveFromPc[cnt] = Res;
+            cnt ++;
+        }else{
+            if(cnt == 1)
+            {
+                CmdReciveFromPc[cnt] = Res;
+                cnt = 0;
+                ReciveOkFlag = 1;
+            }
+        }
 	} 
 }
 /*

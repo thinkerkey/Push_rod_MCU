@@ -31,3 +31,4 @@
 ..\obj\usart1.o: ..\STM32F10X_FWLIB\inc\misc.h
 ..\obj\usart1.o: ..\SYSTEM\usart1\usart1.h
 ..\obj\usart1.o: C:\Keil473\ARM\ARMCC\bin\..\include\stdio.h
+..\obj\usart1.o: ..\HARDWARE\TIM3\tim3.h

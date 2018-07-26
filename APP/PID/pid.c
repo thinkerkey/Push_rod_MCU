@@ -50,11 +50,22 @@ void PIDCalculate(PIDTypedef *pidset)
 
 float PIDController(PIDTypedef *pidset,float expvalue,float nowvalue)
 {
+    static uint8_t Deadcnt = 0;
 	pidset->ExpValu = expvalue;
 	pidset->NowValu = nowvalue;
 	
 	PIDCalculate(pidset);
-	
+	if(pidset->Err > -0.5 && pidset->Err < 0.5)
+    {
+        Deadcnt ++;
+        if(Deadcnt > 5)
+        {
+            pidset->OutValu = 0;
+        }
+    }else
+    {
+        Deadcnt = 0;
+    }
 	return (pidset->OutValu);
 }
 

@@ -10,6 +10,18 @@
 #include "sys.h"
 
 
+#define ModeUp      1
+#define ModeDown    2    
+#define ModePause   3
+#define ModeReset   4
+#define ModeSend    5
+
+extern uint8_t CmdReciveFromPc[2];
+extern uint8_t ReciveOkFlag;
+extern uint8_t PoleDoMode;
+
+extern uint8_t SetLenthFromPC;
+
 void TIM3_Init(u16 arr,u16 psc);
 
 #endif

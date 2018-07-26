@@ -9,8 +9,35 @@ int main()
 	All_Init();
 	while(1)    
     {
-		//printf("working\r\n");
-        delay_ms(100);
+        if(ReciveOkFlag)
+        {
+            ReciveOkFlag = 0;
+            if(CmdReciveFromPc[1] == 0xff)
+            {
+                PoleDoMode = ModeUp;
+                SetMotor(800);
+            }else if(CmdReciveFromPc[1] == 0xf3)
+            {
+                PoleDoMode = ModeDown;
+                SetMotor(-800);
+            }else if(CmdReciveFromPc[1] == 0xf0)
+            {
+                PoleDoMode = ModePause;
+                SetMotor(0);
+            }else if(CmdReciveFromPc[1] == 0xf1)
+            {
+                PoleDoMode = ModeReset;
+                MotorSetZero();
+            }else
+            {
+                PoleDoMode = ModeSend;
+                SetLenthFromPC = CmdReciveFromPc[1];
+                if(SetLenthFromPC > 45)
+                {
+                    SetLenthFromPC = 45;
+                }
+            }
+        }
 	}
 }
 
